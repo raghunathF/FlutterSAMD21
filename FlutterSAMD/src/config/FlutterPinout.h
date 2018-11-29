@@ -1,0 +1,51 @@
+/*
+ * FlutterPinout.h
+ *
+ * Created: 10/11/2018 1:56:48 PM
+ *  Author: raghu
+ */ 
+
+
+#ifndef FLUTTERPINOUT_H_
+#define FLUTTERPINOUT_H_
+
+//Out
+#define	OUT1_DIO_PIN	PIN_PA21
+#define	OUT1_DET_PIN	PIN_PA04
+#define OUT1_SDA_PIN	PIN_PA08
+#define OUT1_SCL_PIN	PIN_PA09
+
+#define	OUT2_DIO_PIN	PIN_PA20
+#define	OUT2_DET_PIN	PIN_PA05
+#define OUT2_SDA_PIN	PIN_PA12
+#define OUT2_SCL_PIN	PIN_PA13
+
+#define	OUT3_DIO_PIN	PIN_PA19
+#define	OUT3_DET_PIN	PIN_PA06
+#define OUT3_SDA_PIN	PIN_PA16
+#define OUT3_SCL_PIN	PIN_PA17
+
+#define	OUT4_DIO_PIN	PIN_PA18
+#define	OUT4_DET_PIN	PIN_PB00 
+#define OUT4_SDA_PIN	PIN_PA22
+#define OUT4_SCL_PIN	PIN_PA23
+
+#define SEN_SCL_PIN		PIN_PB02
+#define SEN_SDA_PIN		PIN_PB03
+
+#define SEN1_DET_PIN	PIN_PB06
+#define SEN1_ANA_PIN	PIN_PA02
+
+#define SEN2_DET_PIN	PIN_PB05
+#define SEN2_ANA_PIN	PIN_PB04
+
+#define SEN3_DET_PIN	PIN_PA10
+#define SEN3_ANA_PIN	PIN_PA11
+
+#define BLE_UART_TX		PIN_PB12
+#define BLE_UART_RX		PIN_PB14
+
+#define BLE_ADV_PIN		PIN_PB13
+#define BLE_TEST_PIN	PIN_PB15
+
+#endif /* FLUTTERPINOUT_H_ */
