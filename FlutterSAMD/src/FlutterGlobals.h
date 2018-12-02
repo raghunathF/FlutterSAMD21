@@ -50,7 +50,7 @@ struct outputPorts
 	uint8_t writeDataLength1;
 	uint8_t writeDataLength2;
 	uint8_t initialization;
-	uint8_t I2CStatus;
+	volatile uint8_t I2CStatus;
 };
 
 #endif /* FLUTTERGLOBALS_H_ */

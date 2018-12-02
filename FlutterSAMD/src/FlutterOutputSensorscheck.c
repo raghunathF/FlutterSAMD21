@@ -13,7 +13,7 @@ extern uint8_t NoInDevCon;
 extern uint8_t NoOutDevCon;
 extern uint8_t outputsConnected[4];
 extern uint8_t inputsConnected[3];
-extern uint8_t sensorOutputs[20];
+extern uint8_t sensorOutputs[40];
 
 #define SENSOR1_DET_AI			14
 #define SENSOR2_DET_AI			13
@@ -46,7 +46,7 @@ extern uint8_t sensorOutputs[20];
 #define MAX_THRES_SERVO				20
 
 #define MIN_THRES_LEDMATRIX			30
-#define MAX_THRES_LEDMATRIX			60
+#define MAX_THRES_LEDMATRIX			100
 
 
 #define COUNT_CONNECTING_THRESHOLD	5
@@ -156,7 +156,7 @@ void convertAnalogOutputs(uint8_t* analogOutput)
 	}
 	temp_test_outputs_connected_1[temp_count] = analogOutput[0] ;
 	temp_test_outputs_connected_2[temp_count] = analogOutput[1] ;
-	temp_test_outputs_connected_3[temp_count] = analogOutput[2] ;
+	temp_test_outputs_connected_3[temp_count] = analogOutput[3] ;
 	
 	temp_count++;
 	if(temp_count == 500)

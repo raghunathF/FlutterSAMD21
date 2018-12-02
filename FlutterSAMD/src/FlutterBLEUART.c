@@ -13,7 +13,7 @@
 extern volatile uint8_t ringBuffer[MAX_LIMIT_RING_BUFFER];
 extern volatile uint8_t tailPointer;
 extern volatile uint8_t headPointer;
-extern struct outputPorts  outputPort[4];
+extern volatile struct outputPorts  outputPort[4];
 
 uint8_t broadcastFlag	=	false;
 
@@ -51,8 +51,10 @@ void UARTReceiveBytes(uint8_t* receiveData ,uint8_t countReceive)
 void transferLEDMatrixValues(uint8_t* tempTransfer , uint8_t port)
 {
 	uint8_t i =0;
+	uint32_t err_code = 0;
+	//static bool firstTime = true;
 	static uint8_t LEDMatrixValues[64]; 
-	for(i=0;i<LEN_LEDMATRIX_SETALL;i++)
+	for(i=0;i<(LEN_LEDMATRIX_SETALL+1);i++)
 	{
 		LEDMatrixValues[i] = tempTransfer[i] ;
 	}
@@ -64,8 +66,20 @@ void transferLEDMatrixValues(uint8_t* tempTransfer , uint8_t port)
 		.high_speed      = false,
 		.hs_master_code  = 0x0,
 	};
-	while(outputPort[port].I2CStatus == BUSY_MODE);
+	//while(outputPort[port].I2CStatus == BUSY_MODE);
+	//outputPort[port].I2CStatus = BUSY_MODE;
 	I2CWrite((port+1) , &wr_packet);
+	delay_cycles_ms(1);
+	I2CWrite((port+1) , &wr_packet);
+	
+	/*
+	if(firstTime == false)
+	{
+		
+	}
+	firstTime = false;
+	*/
+	
 }
 
 
@@ -100,11 +114,10 @@ void checkUART()
 					transferLEDMatrixValues(receivedValue,port);
 				}
 				
-				
-				
 				//Get the port info
 				//Get the packet info
 				//update the flag to be sent to the 
+				
 				break;
 			case COMMON_SETALL:
 			/*

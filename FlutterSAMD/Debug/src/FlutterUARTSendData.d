@@ -142,7 +142,7 @@ src/FlutterUARTSendData.d src/FlutterUARTSendData.o: \
  ../src/ASF/sam0/drivers/tc/tc.h ../src/ASF/sam0/drivers/tcc/tcc.h \
  ../src/ASF/sam0/drivers/tcc/tcc_callback.h \
  ../src/ASF/sam0/drivers/tcc/tcc.h ../src/FlutterUARTSendData.h \
- ../src/FlutterUART.h
+ ../src/FlutterUART.h ../src/FlutterGlobals.h
 
 ../src/asf.h:
 
@@ -441,3 +441,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/FlutterUARTSendData.h:
 
 ../src/FlutterUART.h:
+
+../src/FlutterGlobals.h:

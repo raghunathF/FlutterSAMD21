@@ -9,7 +9,7 @@
 #ifndef FLUTTEROUTPUTSCONTROL_H_
 #define FLUTTEROUTPUTSCONTROL_H_
 
-
+void checkSendOutputs();
 
 
 

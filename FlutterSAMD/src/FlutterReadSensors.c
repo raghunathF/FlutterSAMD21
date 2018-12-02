@@ -31,7 +31,7 @@ static const  uint8_t inputAnalogChannles[NO_SENSORS] = SENSOR_INPUTS_AI;
 
 extern uint8_t NoInDevCon ;
 extern uint8_t inputsConnected[3];
-extern uint8_t sensorOutputs[20];
+extern uint8_t sensorOutputs[40];
 
 void readSensors()
 {
@@ -45,25 +45,32 @@ void readSensors()
 			switch(inputsConnected[i])
 			{
 				case ANALOG_LIGHT_SENSOR:
-					sensorOutputs[5*i + 4] = adc_start_read_result(inputAnalogChannles[i]);
+					sensorOutputs[5*i + 4]     = i+1;
+					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
 				case ANALOG_DISTANCE_SENSOR:
-					sensorOutputs[5*i + 4] = adc_start_read_result(inputAnalogChannles[i]);
+					sensorOutputs[5*i + 4]     = i+1;
+					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
 				case ANALOG_SOUND_SENSOR:
-					sensorOutputs[5*i + 4] = adc_start_read_result(inputAnalogChannles[i]);
+					sensorOutputs[5*i + 4]     = i+1;
+					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
 				case ANALOG_DIAL:
-					sensorOutputs[5*i + 4] = adc_start_read_result(inputAnalogChannles[i]);
+					sensorOutputs[5*i + 4]     = i+1;
+					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
 				case ANALOG_TEMPERATURE:
-					sensorOutputs[5*i + 4] = adc_start_read_result(inputAnalogChannles[i]);
+					sensorOutputs[5*i + 4]     = i+1;
+					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
 				default :
+					/*
 					for(j=0;j<LENGTH_SENSOR_VALUE; j++)
 					{
 						sensorOutputs[5*i + 4 + j] = 0;
 					}
+					*/
 					break;
 			}
 		}

@@ -8,15 +8,17 @@
 #include "FlutterBLEUART.h"
 #include "FlutterI2CMaster.h"
 #include "FlutterCheckOutputs.h"
+#include "FlutterOutputsControl.h"
 
 
-uint8_t sensorOutputs[20];
+uint8_t sensorOutputs[40];
 uint8_t outputsConnected[4];
 uint8_t inputsConnected[3] = {0x00 , 0x00 , 0x00} ;
 uint8_t NoOutDevCon = 0;
 uint8_t NoInDevCon = 0;
 uint8_t writeDataI2C[60][5];
-bool readySendData = false;
+bool readySendData		= false;
+bool readySendI2CRead	= false; 
 
 volatile uint8_t ringBuffer[MAX_LIMIT_RING_BUFFER];
 volatile bool recDataStatus;
@@ -24,7 +26,7 @@ volatile uint8_t tailPointer;
 volatile uint8_t headPointer;
 
 
-struct outputPorts  outputPort[4];
+volatile struct outputPorts  outputPort[4];
 
 /*
 struct outputPortGen outputPort;
@@ -58,9 +60,10 @@ int main (void)
 	{
 		checkOutputsInputs();
 		checkSetOutputs();
-		//readSensors();
+		readSensors();
 		//setOutputs();
 		checkUART();
+		checkSendOutputs();
 		delay_ms(25);
 	}
 }

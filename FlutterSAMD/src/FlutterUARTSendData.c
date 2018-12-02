@@ -7,11 +7,15 @@
 #include <asf.h>
 #include "FlutterUARTSendData.h"
 #include "FlutterUART.h"
+#include "FlutterGlobals.h"
 
 #define   SEND_TIMER   TC7
 
 extern bool	readySendData ; 
-extern uint8_t sensorOutputs[20];
+extern bool	readySendI2CRead ; 
+extern uint8_t sensorOutputs[40];
+extern uint8_t outputsConnected[4];
+extern uint8_t inputsConnected[4];
 
 #define LENGTH_SENSORS_DATA  20
 
@@ -30,18 +34,61 @@ void configureTimer()
 	tc_enable(&tc_encoder_capture);
 }
 
+void arrangeSensorData(uint8_t* sendSensorOutputs)
+{
+	uint8_t countSensorOutputs = 0;
+	uint8_t i,j =0;
+	for(i=0;i<4;i++)
+	{
+		sendSensorOutputs[i]	= sendSensorOutputs[i];
+	}
+	for(i=0;i<3;i++)
+	{
+		if(inputsConnected[i] != NOTHINGCONNECTED )
+		{
+			for(j=0;j<5;j++)
+			{
+				sendSensorOutputs[countSensorOutputs*5 + j] = sensorOutputs[5*i + 4];
+			}
+			countSensorOutputs++;
+		}
+	}
+	for(i=0;i<4;i++)
+	{
+		if(outputsConnected[i] != NOTHINGCONNECTED )
+		{
+			if(outputsConnected[i] == OUTPUT_LEDMATRIX)
+			{
+				if(countSensorOutputs < 3)
+				{
+					for(j=0;j<5;j++)
+					{
+						sendSensorOutputs[countSensorOutputs*5 + j] = sensorOutputs[5*i + 20+j];
+					}
+					countSensorOutputs++;
+				}
+				
+			}
+		}
+	}
+}
+
 void sendDataBLE()
 {
+	static uint8_t sendSensorOutputs[20]; 
+	
 	if(readySendData)
 	{
 		readySendData = false;
-		usart_write_buffer_wait(&usart_instance, sensorOutputs , LENGTH_SENSORS_DATA );
+		arrangeSensorData(sendSensorOutputs);
+		usart_write_buffer_wait(&usart_instance, sendSensorOutputs, LENGTH_SENSORS_DATA );
 	}
 }
 
 void sendInfoCallback()
 {
 	readySendData = true;
+	readySendI2CRead = true;
 	//usart_write_buffer_wait(&usart_instance, transmit_value ,VERSION_SET_LEN);
 }
 

@@ -143,7 +143,8 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/sam0/drivers/tcc/tcc.h ../src/FlutterOutputSensorscheck.h \
  ../src/FlutterReadSensors.h ../src/FlutterUART.h ../src/FlutterGlobals.h \
  ../src/FlutterUARTSendData.h ../src/FlutterBLEUART.h \
- ../src/FlutterI2CMaster.h ../src/FlutterCheckOutputs.h
+ ../src/FlutterI2CMaster.h ../src/FlutterCheckOutputs.h \
+ ../src/FlutterOutputsControl.h
 
 ../src/asf.h:
 
@@ -454,3 +455,5 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/FlutterI2CMaster.h:
 
 ../src/FlutterCheckOutputs.h:
+
+../src/FlutterOutputsControl.h:

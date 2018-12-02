@@ -46,6 +46,7 @@
 
 void initializeI2CModules();
 void I2CWrite(uint8_t instanceNo , struct i2c_master_packet *const wr_packet);
+void I2CRead(uint8_t instanceNo , struct i2c_master_packet *const rd_packet);
 void enableI2CModule(uint8_t port);
 void disableI2CModule(uint8_t port);
 

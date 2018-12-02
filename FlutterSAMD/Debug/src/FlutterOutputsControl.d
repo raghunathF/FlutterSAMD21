@@ -141,7 +141,8 @@ src/FlutterOutputsControl.d src/FlutterOutputsControl.o: \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
  ../src/ASF/sam0/drivers/tc/tc.h ../src/ASF/sam0/drivers/tcc/tcc.h \
  ../src/ASF/sam0/drivers/tcc/tcc_callback.h \
- ../src/ASF/sam0/drivers/tcc/tcc.h ../src/FlutterOutputsControl.h
+ ../src/ASF/sam0/drivers/tcc/tcc.h ../src/FlutterOutputsControl.h \
+ ../src/FlutterI2CMaster.h ../src/FlutterGlobals.h
 
 ../src/asf.h:
 
@@ -438,3 +439,7 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/sam0/drivers/tcc/tcc.h:
 
 ../src/FlutterOutputsControl.h:
+
+../src/FlutterI2CMaster.h:
+
+../src/FlutterGlobals.h:

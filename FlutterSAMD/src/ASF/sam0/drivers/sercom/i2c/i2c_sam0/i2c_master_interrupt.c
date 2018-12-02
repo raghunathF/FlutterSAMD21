@@ -443,7 +443,7 @@ enum status_code i2c_master_read_packet_job_no_stop(
 
 	/* Make sure we don't send STOP */
 	module->send_stop = false;
-	module->send_nack = true;
+	module->send_nack = false;
 	/* Start reading */
 	return _i2c_master_read_packet(module, packet);
 }
@@ -674,17 +674,16 @@ void _i2c_master_interrupt_handler(
 	if ((module->buffer_length <= 0) && (module->buffer_remaining > 0)) {
 		/* Call function for address response */
 		_i2c_master_async_address_response(module);
-
 	/* Check if buffer write is done */
-	} else if ((module->buffer_length > 0) && (module->buffer_remaining <= 0) &&
-			(module->status == STATUS_BUSY) &&
-			(module->transfer_direction == I2C_TRANSFER_WRITE)) {
+	} else if ((module->buffer_length > 0)     && (module->buffer_remaining <= 0) &&
+			   (module->status == STATUS_BUSY) && (module->transfer_direction == I2C_TRANSFER_WRITE)) {
+		
 		/* Stop packet operation */
-		i2c_module->INTENCLR.reg =
-				SERCOM_I2CM_INTENCLR_MB | SERCOM_I2CM_INTENCLR_SB;
-
-		module->buffer_length = 0;
-		module->status        = STATUS_OK;
+		i2c_module->INTENCLR.reg	=	SERCOM_I2CM_INTENCLR_MB | SERCOM_I2CM_INTENCLR_SB;
+		
+		
+		module->buffer_length		=	0;
+		module->status				=	STATUS_OK;
 
 		if (module->send_stop) {
 			/* Send stop condition */
@@ -739,9 +738,9 @@ void _i2c_master_interrupt_handler(
 
 	/* Check for error */
 	if ((module->status != STATUS_BUSY) && (module->status != STATUS_OK)) {
+		
 		/* Stop packet operation */
-		i2c_module->INTENCLR.reg = SERCOM_I2CM_INTENCLR_MB |
-				SERCOM_I2CM_INTENCLR_SB;
+		i2c_module->INTENCLR.reg = SERCOM_I2CM_INTENCLR_MB | SERCOM_I2CM_INTENCLR_SB;
 
 		module->buffer_length = 0;
 		module->buffer_remaining = 0;
