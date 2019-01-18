@@ -27,6 +27,7 @@ void configureUSART()
 	config_usart.pinmux_pad1 = USART_SERCOM_PINMUX_PAD1_UNUSED;
 	config_usart.pinmux_pad2 = USART_SERCOM_PINMUX_PAD2_RX;
 	config_usart.pinmux_pad3 = USART_SERCOM_PINMUX_PAD3_UNUSED;
+	config_usart.generator_source = GCLK_GENERATOR_3;
 	while (usart_init(&usart_instance,BLE_UART_MODULE, &config_usart) != STATUS_OK){}
 	usart_enable(&usart_instance);
 }

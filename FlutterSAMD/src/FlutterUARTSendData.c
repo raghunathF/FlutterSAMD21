@@ -19,7 +19,7 @@ extern uint8_t inputsConnected[4];
 
 #define LENGTH_SENSORS_DATA  20
 
-
+//time -- 
 void configureTimer()
 {
 	struct tc_config config_tc;
@@ -27,7 +27,7 @@ void configureTimer()
 	struct tc_events config_events;
 	config_tc.enable_capture_on_channel[0]		=		true;
 	config_tc.counter_size						=		TC_COUNTER_SIZE_8BIT; //8
-	config_tc.clock_source						=		GCLK_GENERATOR_0;
+	config_tc.clock_source						=		GCLK_GENERATOR_3;
 	config_tc.clock_prescaler					=		TC_CLOCK_PRESCALER_DIV1024; //1024
 	config_tc.counter_8_bit.period				=		0xFF;
 	tc_init(&tc_encoder_capture, SEND_TIMER , &config_tc);
@@ -40,7 +40,7 @@ void arrangeSensorData(uint8_t* sendSensorOutputs)
 	uint8_t i,j =0;
 	for(i=0;i<4;i++)
 	{
-		sendSensorOutputs[i]	= sendSensorOutputs[i];
+		sendSensorOutputs[i]	= sensorOutputs[i];
 	}
 	for(i=0;i<3;i++)
 	{
@@ -48,7 +48,7 @@ void arrangeSensorData(uint8_t* sendSensorOutputs)
 		{
 			for(j=0;j<5;j++)
 			{
-				sendSensorOutputs[countSensorOutputs*5 + j] = sensorOutputs[5*i + 4];
+				sendSensorOutputs[countSensorOutputs*5 + j + 4] = sensorOutputs[5*i + 4+j];
 			}
 			countSensorOutputs++;
 		}
@@ -63,7 +63,7 @@ void arrangeSensorData(uint8_t* sendSensorOutputs)
 				{
 					for(j=0;j<5;j++)
 					{
-						sendSensorOutputs[countSensorOutputs*5 + j] = sensorOutputs[5*i + 20+j];
+						sendSensorOutputs[countSensorOutputs*5 + j + 4] = sensorOutputs[5*i + 20+j];
 					}
 					countSensorOutputs++;
 				}
@@ -87,8 +87,15 @@ void sendDataBLE()
 
 void sendInfoCallback()
 {
-	readySendData = true;
-	readySendI2CRead = true;
+	static uint8_t tempCount = 0;
+	tempCount++;
+	if(tempCount>1)
+	{
+		tempCount = 0;
+		readySendData = true;
+		readySendI2CRead = true;
+	}
+	
 	//usart_write_buffer_wait(&usart_instance, transmit_value ,VERSION_SET_LEN);
 }
 
@@ -100,7 +107,7 @@ void configureTimerCallbacks()
 }
 
 
-//Send data to BLE every 30msec so that notifications can be sent in a timely manner
+//Send data to BLE every 60msec so that notifications can be sent in a timely manner
 void configureSendInfo()
 {
 	configureTimer();

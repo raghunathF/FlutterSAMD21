@@ -60,6 +60,8 @@ void I2CRead(uint8_t instanceNo , struct i2c_master_packet *const rd_packet)
 			while (i2c_master_read_packet_wait(&i2c_master_instance_4, rd_packet) !=STATUS_OK) {
 				/* Increment timeout counter and check if timed out. */
 				if (timeout++ == TIMEOUT) {
+					i2c_master_disable(&i2c_master_instance_4);
+					i2c_master_enable(&i2c_master_instance_4);
 					break;
 				}
 			}
@@ -174,6 +176,7 @@ void initializeI2CModules()
 	struct i2c_master_config config_i2c_master;
 	i2c_master_get_config_defaults(&config_i2c_master);
 	
+	config_i2c_master.generator_source = GCLK_GENERATOR_0;
 	//Output 1 
 	config_i2c_master.pinmux_pad0    = OUTPUT1_I2C_SDA;
 	config_i2c_master.pinmux_pad1    = OUTPUT1_I2C_SCL;
@@ -199,7 +202,7 @@ void initializeI2CModules()
 	config_i2c_master.pinmux_pad0    = OUTPUT4_I2C_SDA;
 	config_i2c_master.pinmux_pad1    = OUTPUT4_I2C_SCL;
 	config_i2c_master.buffer_timeout = 1000;
-	//config_i2c_master.generator_source = GCLK_GENERATOR_0;
+	
 	while(i2c_master_init(&i2c_master_instance_4,  CONF_I2C_MASTER_MODULE_OUTPUT_4, &config_i2c_master)   != STATUS_OK);
 	i2c_master_register_callback(&i2c_master_instance_4, i2c_write_complete_callback_4, I2C_MASTER_CALLBACK_WRITE_COMPLETE);
 	//i2c_master_register_callback(&i2c_master_instance_4, i2c_error_callback_4, I2C_MASTER_CALLBACK_ERROR);

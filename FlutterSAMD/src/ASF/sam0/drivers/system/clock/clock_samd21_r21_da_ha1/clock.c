@@ -966,7 +966,6 @@ void system_clock_init(void)
 #  endif
 #endif
 
-
 	/* DFLL Enable (Open and Closed Loop) */
 #if CONF_CLOCK_DFLL_ENABLE == true
 	system_clock_source_enable(SYSTEM_CLOCK_SOURCE_DFLL);

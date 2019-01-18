@@ -25,7 +25,6 @@ extern uint8_t sensorOutputs[40];
 #define OUTPUT4_DET_AI			8
 
 
-
 #define MASK_UPPER_BYTE         0xFF00
 #define MASK_LOWER_BYTE         0x00FF
 
@@ -45,9 +44,12 @@ extern uint8_t sensorOutputs[40];
 #define MIN_THRES_SERVO				10
 #define MAX_THRES_SERVO				20
 
-#define MIN_THRES_LEDMATRIX			30
-#define MAX_THRES_LEDMATRIX			100
 
+#define MIN_THRES_LEDMATRIX			30
+#define MAX_THRES_LEDMATRIX			70
+
+#define MIN_THRES_NOTHING			250 
+#define MAX_THRES_NOTHING           255
 
 #define COUNT_CONNECTING_THRESHOLD	5
 
@@ -63,7 +65,7 @@ static const  uint8_t outputDetectAnalogChannles[NO_OUTPUTS] = OUTPUTS_DET_AI;
 
 uint8_t  inputOutputConnection(uint8_t analogInput)
 {
-	uint8_t inputOutput = 0;
+	uint8_t inputOutput = 100;
 	
 	if((analogInput > MIN_THRES_LIGHT) && (analogInput <= MAX_THRES_LIGHT))
 	{
@@ -89,7 +91,7 @@ uint8_t  inputOutputConnection(uint8_t analogInput)
 	{
 		inputOutput	=		OUTPUT_LEDMATRIX;
 	}
-	else
+	else if((analogInput > MIN_THRES_NOTHING) && (analogInput <= MAX_THRES_NOTHING))
 	{
 		inputOutput	=		NOTHINGCONNECTED;
 	}
@@ -147,6 +149,11 @@ void convertAnalogOutputs(uint8_t* analogOutput)
 			countDisconnection[i]++;
 			if(countDisconnection[i] > COUNT_CONNECTING_THRESHOLD)
 			{
+				if(i==3)
+				{
+					countDisconnection[3] = 0;
+				    outputsConnected[3]	= NOTHINGCONNECTED;
+				}
 				countDisconnection[i] = 0;
 				outputsConnected[i]	= NOTHINGCONNECTED;
 			}
@@ -234,9 +241,9 @@ void convertAnalogInputs(uint8_t* analogInputs)
 	}
 	*/
 	
-	temp_test_inputs_connected_1[temp_count] = inputsConnected[0] ;
-	temp_test_inputs_connected_2[temp_count] = inputsConnected[1] ;
-	temp_test_inputs_connected_3[temp_count] = inputsConnected[2] ;
+	temp_test_inputs_connected_1[temp_count] = analogInputs[0] ;
+	temp_test_inputs_connected_2[temp_count] = analogInputs[1];
+	temp_test_inputs_connected_3[temp_count] = analogInputs[2] ;
 	
 	temp_count++;
 	if(temp_count == 500)

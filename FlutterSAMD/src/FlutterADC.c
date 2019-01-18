@@ -21,6 +21,7 @@ void configureADC()
 	conf_adc.positive_input		=  OUTPUT1_DET_AI;
 	conf_adc.negative_input		=  ADC_NEGATIVE_INPUT_GND;
 	conf_adc.resolution			=  ADC_RESOLUTION_8BIT;
+	conf_adc.clock_source       = GCLK_GENERATOR_3;
 	//conf_adc.left_adjust		=  true;
 
 	adc_init(&adc_instance, ADC, &conf_adc);

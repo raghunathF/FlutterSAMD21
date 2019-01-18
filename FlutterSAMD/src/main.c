@@ -42,7 +42,7 @@ struct inputPortGen
 	uint8_t connectionStatus[3];
 	uint8_t NoConnectedDevices;
 };
-*/
+*/ 
 
 
 int main (void)
@@ -58,12 +58,14 @@ int main (void)
 	configureInputOutputDetection();
 	while(1)
 	{
+		
 		checkOutputsInputs();
 		checkSetOutputs();
 		readSensors();
 		//setOutputs();
 		checkUART();
+		delay_ms(10);
 		checkSendOutputs();
-		delay_ms(25);
+		
 	}
 }

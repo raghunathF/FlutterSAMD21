@@ -31,7 +31,7 @@ uint8_t broadcastFlag	=	false;
 #define RGB_LED					  1
 
 #define LEN_BROADCAST_COMMAND	  1
-#define LEN_LEDMATRIX_SETALL	  54
+#define LEN_LEDMATRIX_SETALL	  72
 
 //#define LEN_COMMON_SETALL		
 
@@ -53,7 +53,7 @@ void transferLEDMatrixValues(uint8_t* tempTransfer , uint8_t port)
 	uint8_t i =0;
 	uint32_t err_code = 0;
 	//static bool firstTime = true;
-	static uint8_t LEDMatrixValues[64]; 
+	static uint8_t LEDMatrixValues[LEN_LEDMATRIX_SETALL+1]; 
 	for(i=0;i<(LEN_LEDMATRIX_SETALL+1);i++)
 	{
 		LEDMatrixValues[i] = tempTransfer[i] ;
@@ -87,7 +87,7 @@ void checkUART()
 {
 	uint8_t i =0;
 	uint8_t port = 3;
-	static uint8_t receivedValue[60];
+	static uint8_t receivedValue[100];
 	if(headPointer != tailPointer)
 	{
 		receivedValue[0]  = ringBuffer[tailPointer];
@@ -113,7 +113,6 @@ void checkUART()
 				{
 					transferLEDMatrixValues(receivedValue,port);
 				}
-				
 				//Get the port info
 				//Get the packet info
 				//update the flag to be sent to the 
