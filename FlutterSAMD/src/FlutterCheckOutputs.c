@@ -87,8 +87,8 @@ void  checkSetOutputs()
 			switch(outputConnected)
 			{
 				case OUTPUT_LEDMATRIX:
-					if(i == 3) // Temporary
-					{	
+					//if(i == 3) // Temporary
+					//{	
 						if(outputPort[i].initialization	  == 		false)
 						{
 							//initialize the I2C Module
@@ -119,7 +119,7 @@ void  checkSetOutputs()
 							outputPort[i].initialization	  =		true;
 							outputPort[i].currentState		  =		OUTPUT_LEDMATRIX;
 						}
-					}
+					//}
 					break;
 					
 				case NOTHINGCONNECTED:

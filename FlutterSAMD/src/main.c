@@ -64,7 +64,8 @@ int main (void)
 		readSensors();
 		//setOutputs();
 		checkUART();
-		delay_ms(10);
+		//
+		delay_ms(5);
 		checkSendOutputs();
 		
 	}

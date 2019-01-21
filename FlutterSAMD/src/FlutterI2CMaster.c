@@ -45,13 +45,34 @@ void I2CRead(uint8_t instanceNo , struct i2c_master_packet *const rd_packet)
 	switch(instanceNo)
 	{
 		case OUTPUT1:
-			i2c_master_read_packet_job(&i2c_master_instance_1, rd_packet);
+			while (i2c_master_read_packet_wait(&i2c_master_instance_1, rd_packet) !=STATUS_OK) {
+				/* Increment timeout counter and check if timed out. */
+				if (timeout++ == TIMEOUT) {
+					i2c_master_disable(&i2c_master_instance_1);
+					i2c_master_enable(&i2c_master_instance_1);
+					break;
+				}
+			}
 			break;
 		case OUTPUT2:
-			i2c_master_read_packet_job(&i2c_master_instance_2, rd_packet);
+			while (i2c_master_read_packet_wait(&i2c_master_instance_2, rd_packet) !=STATUS_OK) {
+				/* Increment timeout counter and check if timed out. */
+				if (timeout++ == TIMEOUT) {
+					i2c_master_disable(&i2c_master_instance_2);
+					i2c_master_enable(&i2c_master_instance_2);
+					break;
+				}
+			}
 			break;
 		case OUTPUT3:
-			i2c_master_read_packet_job(&i2c_master_instance_3, rd_packet);
+			while (i2c_master_read_packet_wait(&i2c_master_instance_3, rd_packet) !=STATUS_OK) {
+				/* Increment timeout counter and check if timed out. */
+				if (timeout++ == TIMEOUT) {
+					i2c_master_disable(&i2c_master_instance_3);
+					i2c_master_enable(&i2c_master_instance_3);
+					break;
+				}
+			}
 			break;
 		case OUTPUT4:
 			//i2c_master_read_packet_wait_no_nack(&i2c_master_instance_4, rd_packet);

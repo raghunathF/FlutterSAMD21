@@ -38,27 +38,28 @@ void checkSendOutputs()
 					case OUTPUT_LEDMATRIX:
 						
 						//Read the dial values regularly 
-						if(i == 3)
-						{
-							struct i2c_master_packet rd_packet = {
-								.address		 = outputPort[i].address, 
-								.data_length	 = outputPort[i].readDataLength,
-								.data			 = rd_buffer,
-								.ten_bit_address = false,
-								.high_speed      = false,
-								.hs_master_code  = 0x0,
-							};
+						//if(i == 3)
+						//{
+						sensorOutputs[20 + i*5]		=	 i + 4;
+						struct i2c_master_packet rd_packet = {
+							.address		 = outputPort[i].address, 
+							.data_length	 = outputPort[i].readDataLength,
+							.data			 = rd_buffer,
+							.ten_bit_address = false,
+							.high_speed      = false,
+							.hs_master_code  = 0x0,
+						};
 							
-							//outputPort[i].I2CStatus =	BUSY_MODE; 
-							I2CRead((i+1) , &rd_packet);
-							sensorOutputs[20 + i*5]		=	 i + 4;
-							sensorOutputs[20 + i*5 + 1] =    rd_buffer[0] ;
-							sensorOutputs[20 + i*5 + 2] = 	 rd_buffer[1] ;
-							//while(outputPort[i].I2CStatus == BUSY_MODE);
-							//delay_cycles_ms(3);
-							//sensor
-							//read the sensor values 
-						}
+						//outputPort[i].I2CStatus =	BUSY_MODE; 
+						I2CRead((i+1) , &rd_packet);
+						sensorOutputs[20 + i*5]		=	 i + 4;
+						sensorOutputs[20 + i*5 + 1] =    rd_buffer[0] ;
+						sensorOutputs[20 + i*5 + 2] = 	 rd_buffer[1] ;
+						//while(outputPort[i].I2CStatus == BUSY_MODE);
+						//delay_cycles_ms(3);
+						//sensor
+						//read the sensor values 
+						//}
 						
 						break;
 					default:

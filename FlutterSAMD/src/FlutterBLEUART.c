@@ -109,10 +109,14 @@ void checkUART()
 				break;
 			case LEDMATRIX_SETALL:
 				UARTReceiveBytes(receivedValue , LEN_LEDMATRIX_SETALL );
-				if(outputPort[port].currentState == 	OUTPUT_LEDMATRIX )
+				for(port=0;port<4;port++)
 				{
-					transferLEDMatrixValues(receivedValue,port);
+					if(outputPort[port].currentState == 	OUTPUT_LEDMATRIX )
+					{
+						transferLEDMatrixValues(receivedValue,port);
+					}
 				}
+				
 				//Get the port info
 				//Get the packet info
 				//update the flag to be sent to the 
