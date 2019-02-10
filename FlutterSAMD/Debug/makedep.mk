@@ -16,9 +16,13 @@ src\ASF\sam0\drivers\tc\tc_interrupt.c
 
 src\ASF\sam0\drivers\tc\tc_sam_d_r_h\tc.c
 
+src\FlutterCheckInputs.c
+
 src\FlutterCheckOutputs.c
 
 src\FlutterI2CMaster.c
+
+src\FlutterInputControl.c
 
 src\FlutterOutputsControl.c
 

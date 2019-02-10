@@ -31,15 +31,35 @@
 #define ANALOG_DIAL								30
 #define ANALOG_DISTANCE_SENSOR					29
 #define ANALOG_SOUND_SENSOR						28
+//Inputs
+#define INPUT_PLACEVALUE						27
+
 
 //Outputs
 #define OUTPUT_SERVO_POSITION					2
 #define OUTPUT_LEDMATRIX						3
 
+#define PORT1									1
+#define PORT2									2
+#define PORT3									3
+
+
 #define NOTHINGCONNECTED						0
 
 #define IDLE_MODE								1
 #define BUSY_MODE								2
+
+struct inputPorts
+{
+	uint8_t address;
+	uint8_t currentState;
+	uint8_t nextState;
+	uint8_t readDataLength;
+	uint8_t writeDataLength1;
+	uint8_t writeDataLength2;
+	uint8_t initialization;
+	volatile uint8_t I2CStatus;
+};
 
 struct outputPorts
 {

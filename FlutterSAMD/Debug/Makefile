@@ -117,8 +117,10 @@ C_SRCS +=  \
 ../src/ASF/sam0/drivers/tcc/tcc_callback.c \
 ../src/ASF/sam0/drivers/tc/tc_interrupt.c \
 ../src/ASF/sam0/drivers/tc/tc_sam_d_r_h/tc.c \
+../src/FlutterCheckInputs.c \
 ../src/FlutterCheckOutputs.c \
 ../src/FlutterI2CMaster.c \
+../src/FlutterInputControl.c \
 ../src/FlutterOutputsControl.c \
 ../src/FlutterServoOutput.c \
 ../src/FlutterUARTSendData.c \
@@ -162,8 +164,10 @@ src/ASF/sam0/drivers/tcc/tcc.o \
 src/ASF/sam0/drivers/tcc/tcc_callback.o \
 src/ASF/sam0/drivers/tc/tc_interrupt.o \
 src/ASF/sam0/drivers/tc/tc_sam_d_r_h/tc.o \
+src/FlutterCheckInputs.o \
 src/FlutterCheckOutputs.o \
 src/FlutterI2CMaster.o \
+src/FlutterInputControl.o \
 src/FlutterOutputsControl.o \
 src/FlutterServoOutput.o \
 src/FlutterUARTSendData.o \
@@ -200,8 +204,10 @@ src/ASF/sam0/drivers/tcc/tcc.o \
 src/ASF/sam0/drivers/tcc/tcc_callback.o \
 src/ASF/sam0/drivers/tc/tc_interrupt.o \
 src/ASF/sam0/drivers/tc/tc_sam_d_r_h/tc.o \
+src/FlutterCheckInputs.o \
 src/FlutterCheckOutputs.o \
 src/FlutterI2CMaster.o \
+src/FlutterInputControl.o \
 src/FlutterOutputsControl.o \
 src/FlutterServoOutput.o \
 src/FlutterUARTSendData.o \
@@ -238,8 +244,10 @@ src/ASF/sam0/drivers/tcc/tcc.d \
 src/ASF/sam0/drivers/tcc/tcc_callback.d \
 src/ASF/sam0/drivers/tc/tc_interrupt.d \
 src/ASF/sam0/drivers/tc/tc_sam_d_r_h/tc.d \
+src/FlutterCheckInputs.d \
 src/FlutterCheckOutputs.d \
 src/FlutterI2CMaster.d \
+src/FlutterInputControl.d \
 src/FlutterOutputsControl.d \
 src/FlutterServoOutput.d \
 src/FlutterUARTSendData.d \
@@ -276,8 +284,10 @@ src/ASF/sam0/drivers/tcc/tcc.d \
 src/ASF/sam0/drivers/tcc/tcc_callback.d \
 src/ASF/sam0/drivers/tc/tc_interrupt.d \
 src/ASF/sam0/drivers/tc/tc_sam_d_r_h/tc.d \
+src/FlutterCheckInputs.d \
 src/FlutterCheckOutputs.d \
 src/FlutterI2CMaster.d \
+src/FlutterInputControl.d \
 src/FlutterOutputsControl.d \
 src/FlutterServoOutput.d \
 src/FlutterUARTSendData.d \
@@ -321,6 +331,10 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

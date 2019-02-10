@@ -13,6 +13,7 @@
 
 extern bool	readySendData ; 
 extern bool	readySendI2CRead ; 
+extern bool	readySendI2CReadInput ; 
 extern uint8_t sensorOutputs[40];
 extern uint8_t outputsConnected[4];
 extern uint8_t inputsConnected[4];
@@ -94,6 +95,7 @@ void sendInfoCallback()
 		tempCount = 0;
 		readySendData = true;
 		readySendI2CRead = true;
+		readySendI2CReadInput = true;
 	}
 	
 	//usart_write_buffer_wait(&usart_instance, transmit_value ,VERSION_SET_LEN);

@@ -1,5 +1,5 @@
-src/FlutterServoOutput.d src/FlutterServoOutput.o: \
- ../src/FlutterServoOutput.c ../src/asf.h \
+src/FlutterInputControl.d src/FlutterInputControl.o: \
+ ../src/FlutterInputControl.c ../src/asf.h \
  ../src/ASF/sam0/drivers/adc/adc.h ../src/ASF/sam0/utils/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.2.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h ../src/ASF/sam0/utils/status_codes.h \
@@ -142,7 +142,8 @@ src/FlutterServoOutput.d src/FlutterServoOutput.o: \
  ../src/ASF/sam0/drivers/tc/tc.h ../src/ASF/sam0/drivers/tcc/tcc.h \
  ../src/ASF/sam0/drivers/tcc/tcc_callback.h \
  ../src/ASF/sam0/drivers/tcc/tcc.h ../src/config/FlutterPinout.h \
- ../src/FlutterServoOutput.h
+ ../src/FlutterInputControl.h ../src/FlutterI2CMaster.h \
+ ../src/FlutterGlobals.h ../src/FlutterCheckInputs.h
 
 ../src/asf.h:
 
@@ -440,4 +441,10 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/config/FlutterPinout.h:
 
-../src/FlutterServoOutput.h:
+../src/FlutterInputControl.h:
+
+../src/FlutterI2CMaster.h:
+
+../src/FlutterGlobals.h:
+
+../src/FlutterCheckInputs.h:

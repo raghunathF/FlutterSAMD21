@@ -28,27 +28,32 @@ extern uint8_t sensorOutputs[40];
 #define MASK_UPPER_BYTE         0xFF00
 #define MASK_LOWER_BYTE         0x00FF
 
-#define MIN_THRES_LIGHT				240
-#define MAX_THRES_LIGHT				250
+#define MIN_THRES_LIGHT				100
+#define MAX_THRES_LIGHT				110
 
-#define MIN_THRES_DIAL				230
-#define MAX_THRES_DIAL				240
+#define MIN_THRES_DIAL				130
+#define MAX_THRES_DIAL				140
 
-#define MIN_THRES_DISTANCE			220
-#define MAX_THRES_DISTANCE			230
+#define MIN_THRES_DISTANCE			100
+#define MAX_THRES_DISTANCE			120
 
-
-#define MIN_THRES_SOUND				210
-#define MAX_THRES_SOUND				220
-
-#define MIN_THRES_SERVO				10
-#define MAX_THRES_SERVO				20
+#define MIN_THRES_PLACEVALUE		180
+#define MAX_THRES_PLACEVALUE		240
 
 
-#define MIN_THRES_LEDMATRIX			30
-#define MAX_THRES_LEDMATRIX			70
+#define MIN_THRES_SOUND				110
+#define MAX_THRES_SOUND				120
 
-#define MIN_THRES_NOTHING			250 
+#define MIN_THRES_SERVO				70
+#define MAX_THRES_SERVO				90
+
+
+#define MIN_THRES_LEDMATRIX			20
+#define MAX_THRES_LEDMATRIX			50
+
+
+
+#define MIN_THRES_NOTHING			240 
 #define MAX_THRES_NOTHING           255
 
 #define COUNT_CONNECTING_THRESHOLD	5
@@ -90,6 +95,10 @@ uint8_t  inputOutputConnection(uint8_t analogInput)
 	else if((analogInput > MIN_THRES_LEDMATRIX) && (analogInput <= MAX_THRES_LEDMATRIX))
 	{
 		inputOutput	=		OUTPUT_LEDMATRIX;
+	}
+	else if((analogInput > MIN_THRES_PLACEVALUE) && (analogInput <= MAX_THRES_PLACEVALUE))
+	{
+		inputOutput	=		INPUT_PLACEVALUE;
 	}
 	else if((analogInput > MIN_THRES_NOTHING) && (analogInput <= MAX_THRES_NOTHING))
 	{

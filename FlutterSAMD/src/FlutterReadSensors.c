@@ -24,10 +24,11 @@ static const  uint8_t inputAnalogChannles[NO_SENSORS] = SENSOR_INPUTS_AI;
 #define ANALOG_DIAL					30
 #define ANALOG_DISTANCE_SENSOR		29
 #define ANALOG_SOUND_SENSOR			28
-#define ANALOG_TEMPERATURE			27
+#define ANALOG_TEMPERATURE			26
 
 
 #define LENGTH_SENSOR_VALUE				5
+#define PLACE_VALUE						10
 
 extern uint8_t NoInDevCon ;
 extern uint8_t inputsConnected[3];
@@ -64,6 +65,9 @@ void readSensors()
 					sensorOutputs[5*i + 4]     = i+1;
 					sensorOutputs[5*i + 4 +1] = adc_start_read_result(inputAnalogChannles[i]);
 					break;
+				case PLACE_VALUE:
+					//readConnectedI2CSensors();
+					 
 				default :
 					/*
 					for(j=0;j<LENGTH_SENSOR_VALUE; j++)

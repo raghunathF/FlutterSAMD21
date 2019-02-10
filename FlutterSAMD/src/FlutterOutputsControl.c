@@ -51,6 +51,7 @@ void checkSendOutputs()
 						};
 							
 						//outputPort[i].I2CStatus =	BUSY_MODE; 
+						
 						I2CRead((i+1) , &rd_packet);
 						sensorOutputs[20 + i*5]		=	 i + 4;
 						sensorOutputs[20 + i*5 + 1] =    rd_buffer[0] ;

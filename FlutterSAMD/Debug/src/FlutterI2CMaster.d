@@ -141,8 +141,8 @@ src/FlutterI2CMaster.d src/FlutterI2CMaster.o: ../src/FlutterI2CMaster.c \
  ../src/ASF/sam0/drivers/tc/tc_interrupt.h \
  ../src/ASF/sam0/drivers/tc/tc.h ../src/ASF/sam0/drivers/tcc/tcc.h \
  ../src/ASF/sam0/drivers/tcc/tcc_callback.h \
- ../src/ASF/sam0/drivers/tcc/tcc.h ../src/FlutterI2CMaster.h \
- ../src/FlutterGlobals.h
+ ../src/ASF/sam0/drivers/tcc/tcc.h ../src/config/FlutterPinout.h \
+ ../src/FlutterI2CMaster.h ../src/FlutterGlobals.h
 
 ../src/asf.h:
 
@@ -437,6 +437,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/sam0/drivers/tcc/tcc_callback.h:
 
 ../src/ASF/sam0/drivers/tcc/tcc.h:
+
+../src/config/FlutterPinout.h:
 
 ../src/FlutterI2CMaster.h:
 

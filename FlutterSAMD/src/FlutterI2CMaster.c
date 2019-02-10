@@ -30,6 +30,7 @@ struct i2c_master_module i2c_master_instance_1;
 struct i2c_master_module i2c_master_instance_2;
 struct i2c_master_module i2c_master_instance_3;
 struct i2c_master_module i2c_master_instance_4;
+struct i2c_master_module i2c_master_instance_sensors;
 
 //static uint8_t wr_buffer[DATA_LENGTH] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07 };
 //static uint8_t wr_buffer_reversed[DATA_LENGTH] = {0x07, 0x06, 0x05, 0x04, 0x03, 0x02, 0x01, 0x00};
@@ -87,6 +88,16 @@ void I2CRead(uint8_t instanceNo , struct i2c_master_packet *const rd_packet)
 				}
 			}
 			break;
+		case SENSORS:
+			while (i2c_master_read_packet_wait(&i2c_master_instance_sensors, rd_packet) !=STATUS_OK) {
+				/* Increment timeout counter and check if timed out. */
+				if (timeout++ == TIMEOUT) {
+					i2c_master_disable(&i2c_master_instance_sensors);
+					i2c_master_enable(&i2c_master_instance_sensors);
+					break;
+				}
+			}
+		break;
 		default:
 			break;
 	}
@@ -134,6 +145,11 @@ void i2c_read_complete_callback_4(struct i2c_master_module *const module)
 	outputPort[3].I2CStatus = IDLE_MODE;
 }
 
+
+void i2c_read_complete_callback_sensors(struct i2c_master_module *const module)
+{
+	//inputPort[3].I2CStatus = IDLE_MODE;
+}
 
 //! [callback_func]
 void i2c_write_complete_callback_1(struct i2c_master_module *const module)
@@ -184,6 +200,19 @@ void i2c_write_complete_callback_4(struct i2c_master_module *const module)
 	outputPort[3].I2CStatus = IDLE_MODE;
 }
 
+void i2c_write_complete_callback_sensors(struct i2c_master_module *const module)
+{
+	/*
+	rd_packet_4.address     = outputPort[3].address;
+	rd_packet_4.data_length = outputPort[3].readDataLength;
+	rd_packet_4.data        = rd_buffer_4;
+	i2c_master_read_packet_job(&i2c_master_instance_4,&rd_packet_4);
+	*/
+	
+	//outputPort[3].I2CStatus = IDLE_MODE;
+}
+
+
 //uint8_t 
 /*
 void i2c_write_complete_callback_4(struct i2c_master_module *const module)
@@ -226,6 +255,15 @@ void initializeI2CModules()
 	
 	while(i2c_master_init(&i2c_master_instance_4,  CONF_I2C_MASTER_MODULE_OUTPUT_4, &config_i2c_master)   != STATUS_OK);
 	i2c_master_register_callback(&i2c_master_instance_4, i2c_write_complete_callback_4, I2C_MASTER_CALLBACK_WRITE_COMPLETE);
+	
+	//Sensors
+	config_i2c_master.pinmux_pad0    = SENSORS_I2C_SDA	;
+	config_i2c_master.pinmux_pad1    = SENSORS_I2C_SCL	;
+	config_i2c_master.buffer_timeout = 1000;
+	while(i2c_master_init(&i2c_master_instance_sensors,  CONF_I2C_MASTER_MODULE_SENSORS, &config_i2c_master)   != STATUS_OK);
+	i2c_master_register_callback(&i2c_master_instance_sensors, i2c_write_complete_callback_sensors,I2C_MASTER_CALLBACK_WRITE_COMPLETE);
+	i2c_master_register_callback(&i2c_master_instance_sensors, i2c_read_complete_callback_sensors,I2C_MASTER_CALLBACK_READ_COMPLETE);
+	
 	//i2c_master_register_callback(&i2c_master_instance_4, i2c_error_callback_4, I2C_MASTER_CALLBACK_ERROR);
 	//i2c_master_register_callback(&i2c_master_instance_4, i2c_read_complete_callback_4,  I2C_MASTER_CALLBACK_READ_COMPLETE);
 	
@@ -288,6 +326,8 @@ void enableI2CModule(uint8_t port)
 			break;
 			
 		case SENSORS:
+			i2c_master_enable(&i2c_master_instance_sensors);
+			i2c_master_enable_callback(&i2c_master_instance_sensors,I2C_MASTER_CALLBACK_WRITE_COMPLETE);
 			break;
 			
 		default:
@@ -322,6 +362,8 @@ void disableI2CModule(uint8_t port)
 			break;
 		
 		case SENSORS:
+			i2c_master_disable(&i2c_master_instance_sensors);
+			i2c_master_disable_callback(&i2c_master_instance_sensors,I2C_MASTER_CALLBACK_WRITE_COMPLETE);
 			break;
 		
 		default:

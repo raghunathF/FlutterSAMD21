@@ -750,6 +750,12 @@
     <Compile Include="src\ASF\sam0\drivers\tc\tc_sam_d_r_h\tc.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\FlutterCheckInputs.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\FlutterCheckInputs.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\FlutterCheckOutputs.c">
       <SubType>compile</SubType>
     </Compile>
@@ -760,6 +766,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\FlutterI2CMaster.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\FlutterInputControl.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\FlutterInputControl.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\FlutterOutputsControl.c">

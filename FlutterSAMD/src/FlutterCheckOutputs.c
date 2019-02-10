@@ -14,14 +14,13 @@
 #define LEDMATRIX_WRITE_DATA_LENGTH_1			73
 #define LEDMATRIX_WRITE_DATA_LENGTH_2			0x05
 
+
 extern uint8_t writeDataI2C[60][3];
 extern uint8_t outputsConnected[4];
 extern volatile struct outputPorts  outputPort[4];
 
 
 void  checkSetOutputs();
-
-
 
 
 void resetOutput(uint8_t port)
@@ -52,6 +51,7 @@ void  checkSetOutputs()
 										   0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,0x55,
 										   0x00
 										   };
+	
 	/*
 	outputPort[3].address 			  =		LEDMATRIX_I2C_SLAVE_ADDRESS;
 	outputPort[3].readDataLength     =		LEDMATRIX_READ_DATA_LENGTH;
@@ -113,7 +113,6 @@ void  checkSetOutputs()
 							/*
 							while(outputPort[i].)
 							{
-								
 							}
 							*/
 							outputPort[i].initialization	  =		true;
