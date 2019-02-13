@@ -17,7 +17,7 @@ void configureADC()
 	adc_get_config_defaults(&conf_adc);
 
 	conf_adc.reference			=  ADC_REFCTRL_REFSEL_INTVCC0_Val;
-	conf_adc.clock_prescaler	=  ADC_CLOCK_PRESCALER_DIV32;
+	conf_adc.clock_prescaler	=  ADC_CLOCK_PRESCALER_DIV128;
 	conf_adc.positive_input		=  OUTPUT1_DET_AI;
 	conf_adc.negative_input		=  ADC_NEGATIVE_INPUT_GND;
 	conf_adc.resolution			=  ADC_RESOLUTION_8BIT;

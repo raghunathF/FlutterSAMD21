@@ -39,6 +39,7 @@ void arrangeSensorData(uint8_t* sendSensorOutputs)
 {
 	uint8_t countSensorOutputs = 0;
 	uint8_t i,j =0;
+	//resetSendSensorvalues[] =
 	for(i=0;i<4;i++)
 	{
 		sendSensorOutputs[i]	= sensorOutputs[i];
@@ -71,6 +72,14 @@ void arrangeSensorData(uint8_t* sendSensorOutputs)
 				
 			}
 		}
+	}
+	while(countSensorOutputs<3)
+	{
+		for(i=0;i<5;i++)
+		{
+			sendSensorOutputs[countSensorOutputs*5 + i + 4] = 0;
+		}
+		countSensorOutputs++;
 	}
 }
 
